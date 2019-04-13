@@ -1,52 +1,44 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kwokyuho
- * Date: 3/25/2019
- * Time: 8:21 PM
- */
 
-//1. foreign key?
-//2. table already created?
-//3. avoid duplication?
+$doc = new DOMDocument();
+$doc->load("https://opendata.clp.com.hk/GetChargingSectionXML.aspx?lang=en");
 
-//path to clp's data
-$path = "https://opendata.clp.com.hk/GetChargingSectionXML.aspx?lang=EN";
-//create a domdocument, load the data and extract information
-$xmlDoc = new DOMDocument();
-$xmlDoc->load($path);
+$areas = $doc->getElementsByTagName("area");
+$stations = $doc->getElementsByTagName("station");
 
-include("station_class.php");
 include("district_class.php");
-include("database_helper_class.php");
+include("station_class.php");
+include("dbhelper_class.php");
+$dbHelper = new DBHelper();
+$dbHelper->create_area_table();
+$dbHelper->create_station_table();
 
-$dbHelper = new DatabaseHelper();
-//$dbHelper->create_district_table();
-//$dbHelper->create_station_table();
-
-$area = $xmlDoc->getElementsByTagName("area");
-foreach($area as $a) {
-    $a_na = $a->getElementsByTagName('name')->item(0)->nodeValue;
-    $district = $a->getElementsByTagName("district");
-    foreach($district as $d){
-        $d_na = $d->getElementsByTagName('name')->item(0)->nodeValue;
-        $district = new District($a_na, $d_na);
-       // $dbHelper->insert_district($district);
-        //echo $district->toString()."<BR>";
+foreach($areas as $area){
+    $a_name = $area->getElementsByTagName("name")[0]->nodeValue;
+    $districts = $area->getElementsByTagName("district");
+    foreach($districts as $district) {
+        $d_name = $district->getElementsByTagName("name")[0]->nodeValue;
+        $dis = new District($d_name, $a_name);
+        $dbHelper->insert_district($dis);
+        echo "inserted: " . $dis->to_string();
     }
 }
-echo "districts are inserted";
-print("======<BR>");
-$station = $xmlDoc->getElementsByTagName("station");
+
 $station_arr = array();
-foreach($station as $s){
-    $no = $s->getElementsByTagName('no')->item(0)->nodeValue;
-    $lo = $s->getElementsByTagName('location')->item(0)->nodeValue;
-    $la =  $s->getElementsByTagName('lat')->item(0)->nodeValue;
-    $ln = $s->getElementsByTagName('lng')->item(0)->nodeValue;
-    $station = new Station($no, $lo, $la, $ln);
-    //$dbHelper->insert_station($station);
-    array_push($station_arr, $station);
+foreach($stations as $station){
+    $no = $station->getElementsByTagName("no")[0]->nodeValue;
+    $lo = $station->getElementsByTagName("location")[0]->nodeValue;
+    $ty = $station->getElementsByTagName("type")[0]->nodeValue;
+    $la = $station->getElementsByTagName("lat")[0]->nodeValue;
+    $ln = $station->getElementsByTagName("lng")[0]->nodeValue;
+
+    $sta = new Station($no, $lo, $ty, $la, $ln);
+    //$dbHelper->insert_station($sta);
+    //echo "inserted: " . $sta->to_string();
+    //array_push($station_arr, $sta);
 }
-$dbHelper->insert_stations($station_arr);
-echo "stations are inserted";
+
+//$dbHelper->insert_stations($station_arr);
+echo "all stations inserted <BR>";
+
+?>

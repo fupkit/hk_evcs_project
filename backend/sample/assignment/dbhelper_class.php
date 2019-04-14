@@ -4,11 +4,11 @@ class DBHelper {
     private $host = "localhost";
     private $user = "root";
     private $pwd = "";
-    private $db = "charge";
+    private $db = "evcs";
 
     public function create_area_table(){
         $conn = $this->get_connection();
-        $sql = "CREATE TABLE `charge`.`district` ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , `area` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        $sql = "CREATE TABLE `evcs`.`district` ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , `area` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         $conn->query($sql);
         $conn->close();
     }
@@ -40,7 +40,7 @@ class DBHelper {
 
     public function create_station_table(){
         $conn = $this->get_connection();
-        $sql = "CREATE TABLE `charge`.`station` ( `no` INT NOT NULL AUTO_INCREMENT , `location` TEXT NOT NULL , `type` TEXT NOT NULL , `lat` INT NOT NULL , `lng` DOUBLE NOT NULL , PRIMARY KEY (`no`)) ENGINE = InnoDB;";
+        $sql = "CREATE TABLE `evcs`.`station` ( `no` INT NOT NULL AUTO_INCREMENT , `location` TEXT NOT NULL , `type` TEXT NOT NULL , `lat` INT NOT NULL , `lng` DOUBLE NOT NULL , PRIMARY KEY (`no`)) ENGINE = InnoDB;";
         $conn->query($sql);
         $conn->close();
     }
@@ -53,7 +53,7 @@ class DBHelper {
 
     public function get_stations($type=""){
         $conn = $this->get_connection();
-        $sql = "SELECT * FROM `charge`.`station`";
+        $sql = "SELECT * FROM `evcs`.`station`";
         if($type != ""){{
             $sql .= " where type like '%$type%'";
         }}
@@ -74,7 +74,7 @@ class DBHelper {
 
     public function get_station($no){
         $conn = $this->get_connection();
-        $sql = "SELECT * FROM `charge`.`station` where no = $no";
+        $sql = "SELECT * FROM `evcs`.`station` where no = $no";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             $no = $row["no"];
@@ -92,7 +92,7 @@ class DBHelper {
 
     public function delete_station($no){
         $conn = $this->get_connection();
-        $sql = "DELETE FROM `charge`.`station` where no = $no";
+        $sql = "DELETE FROM `evcs`.`station` where no = $no";
         $result = $conn->query($sql);
         return "{\"success\":true}";
     }

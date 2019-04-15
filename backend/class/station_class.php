@@ -7,12 +7,7 @@ class Station {
     private $type;
     private $lat;
     private $lng;
-    public function __construct($no, $lo, $ty, $la, $ln){
-        $this->no = $no;
-        $this->location = $lo;
-        $this->type = $ty;
-        $this->lat = $la;
-        $this->lng = $ln;
+    public function __construct(){
     }
 
     public function to_string(){

@@ -2,11 +2,11 @@
 
 
 class District {
+    private $id;
     private $name;
     private $area;
-    public function __construct($na, $ar){
-        $this->name = $na;
-        $this->area = $ar;
+    private $lang;
+    public function __construct(){
     }
 
     public function to_string(){
@@ -15,6 +15,10 @@ class District {
 
     public function __get($name) {
         return $this->$name;
+    }
+
+    public function __set($property, $value) {
+            $this->$property = $value;
     }
 }
 

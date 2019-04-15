@@ -1,6 +1,6 @@
 <?php
 // Connect to the db
-include_once('db_creator.php');
+require_once('db_creator.php');
 class DBConnector
 {
     private static $instance = null;
@@ -32,19 +32,20 @@ class DBConnector
     }
     public function connect_db()
     {
-        if($this->conn == null) {
-            $this->conn = $this->connectHost();
+        if ($this->conn == null) {
+            $this->conn = $this->connect_host();
         }
-        if(mysqli_select_db($this->conn, $this->db)) {
+        if (mysqli_select_db($this->conn, $this->db)) {
             return $this->conn;
         } else {
-            create_db();
+            $this->create_db($this->conn);
+            return $this->conn;
         }
-
-        
     }
-    private function create_db(){
+    private function create_db()
+    {
         $db_creator = new DBCreator();
-        $db_creator->create();
+        $db_creator->create($this->conn);
     }
 }
+?>

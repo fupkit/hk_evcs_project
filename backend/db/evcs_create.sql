@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `district`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `district` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `lang` varchar(45) NOT NULL,
   `area` varchar(45) DEFAULT NULL,
   `district` varchar(45) DEFAULT NULL,
@@ -52,17 +52,18 @@ DROP TABLE IF EXISTS `station`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `station` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
+  `lang` varchar(45) NOT NULL,
+  `district_id` int(11) NOT NULL,
   `location` varchar(300) DEFAULT NULL,
   `lat` int(11) DEFAULT NULL,
   `lng` int(11) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
-  `district_id` int(11) NOT NULL,
   `address` varchar(500) DEFAULT NULL,
   `provider` varchar(200) DEFAULT NULL,
   `parkingNo` varchar(45) DEFAULT NULL,
   `img` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`,`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -8,7 +8,7 @@ class DBConnector
 
     private $host = 'localhost';
     private $user = 'root';
-    private $pass = 'root';
+    private $pass = '';
     private $db = 'evcs';
 
     private function __construct()
@@ -42,10 +42,10 @@ class DBConnector
             return $this->conn;
         }
     }
-    private function create_db()
+    private function create_db($conn)
     {
         $db_creator = new DBCreator();
-        $db_creator->create($this->conn);
+        $db_creator->create($conn);
     }
 }
 ?>

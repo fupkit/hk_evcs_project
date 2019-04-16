@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS `evcs`;
+
 CREATE DATABASE  IF NOT EXISTS `evcs` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `evcs`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)

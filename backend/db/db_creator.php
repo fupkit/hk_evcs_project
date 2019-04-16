@@ -12,10 +12,10 @@ class DBCreator
         $this->conn = $conn;
         $create_sql = file_get_contents('evcs_create.sql');
         if ($this->dbImportSQL($create_sql) === true) {
-            echo "Database created successfully";
             if (mysqli_select_db($this->conn, 'evcs')) {
                 $this->get_en_data();
                 $this->get_tc_data();
+                echo "Database created successfully";
             }
         } else {
             echo "Error creating database: " . $this->conn->error;
@@ -49,8 +49,8 @@ class DBCreator
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bind_param("dsss", $d_id, $lang, $a_name, $d_name);
                 $stmt->execute();
-                //fetching result would go here, but will be covered later
                 $stmt->close();
+                //echo  '<br>'.$d_id.' | '.$lang.' | '.$a_name.' | '.$d_name;
                 $d_id++;
             }
         }

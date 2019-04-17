@@ -89,13 +89,13 @@ class DBCreator
                 $sta->__set('parkingNo', $no);
                 $sta->__set('img', $img);
 
-                $sql = 'insert into station (id, location, lat, lng, type, address, district_id, provider, parkingNo, img) 
-                values (?, ?, ?, 
+                $sql = 'insert into station (id, lang,  location, lat, lng, type, address, district_id, provider, parkingNo, img) 
+                values (?, ?, ?, ?, 
                 ?, ?, ?, 
                 (select id from district where area = ? and district = ? and lang = ?),
                  ?, ?, ?)';
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bind_param("dsddssssssss", $no, $lo, $la, $ln, $ty, $ad, $dl, $ds, $lang, $pr, $no, $img);
+                $stmt->bind_param("dssddssssssss", $no, $lo, $lang, $la, $ln, $ty, $ad, $dl, $ds, $lang, $pr, $no, $img);
                 $stmt->execute();
                 $stmt->close();
             }

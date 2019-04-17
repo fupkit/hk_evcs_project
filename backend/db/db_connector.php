@@ -8,7 +8,7 @@ class DBConnector
 
     private $host = 'localhost';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'root';
     private $db = 'evcs';
 
     private function __construct()

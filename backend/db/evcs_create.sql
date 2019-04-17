@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `district`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `district` (
-  `id` int(11) NOT NULL AUTO INCREMENT,
+  `id` int(11) NOT NULL,
   `lang` varchar(45) NOT NULL,
   `area` varchar(45) DEFAULT NULL,
   `district` varchar(45) DEFAULT NULL,

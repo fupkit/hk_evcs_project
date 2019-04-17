@@ -8,6 +8,8 @@ class Station {
     private $lng;
     private $type;
     private $district_id;
+    private $districtL;
+    private $districtS;
     private $address;
     private $provider;
     private $parkingNo;

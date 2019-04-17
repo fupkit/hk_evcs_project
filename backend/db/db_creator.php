@@ -1,8 +1,14 @@
 <?php
+$requires = glob('../class/*.php');
+foreach ($requires as $file) {
+    require_once($file);   
+}
+require_once('../util/util.php');
+
 class DBCreator
 {
     private static $HTTP_DATA_SOURCE = 'https://opendata.clp.com.hk/GetChargingSectionXML.aspx?lang=';
-
+    private static $STATION_URL_PREFIX = 'https://www.clp.com.hk';
     private $conn;
     public function __construct()
     {
@@ -25,13 +31,13 @@ class DBCreator
     public function get_en_data()
     {
         $doc = new DOMDocument();
-        $doc->load(self::$HTTP_DATA_SOURCE.'en');
+        $doc->load(self::$HTTP_DATA_SOURCE . 'en');
         $this->insert_from_api($doc, 'en');
     }
     public function get_tc_data()
     {
         $doc = new DOMDocument();
-        $doc->load(self::$HTTP_DATA_SOURCE.'tc');
+        $doc->load(self::$HTTP_DATA_SOURCE . 'tc');
         $this->insert_from_api($doc, 'tc');
     }
     private function insert_from_api($doc, $lang)
@@ -50,8 +56,48 @@ class DBCreator
                 $stmt->bind_param("dsss", $d_id, $lang, $a_name, $d_name);
                 $stmt->execute();
                 $stmt->close();
-                //echo  '<br>'.$d_id.' | '.$lang.' | '.$a_name.' | '.$d_name;
                 $d_id++;
+            }
+
+            foreach ($stations as $station) {
+                $no = $station->getElementsByTagName("no")[0]->nodeValue;
+                $lo = $station->getElementsByTagName("location")[0]->nodeValue;
+                $la = $station->getElementsByTagName("lat")[0]->nodeValue;
+                $ln = $station->getElementsByTagName("lng")[0]->nodeValue;
+                $ty = $station->getElementsByTagName("type")[0]->nodeValue;
+                $dl = $station->getElementsByTagName("districtL")[0]->nodeValue;
+                $ds = $station->getElementsByTagName("districtS")[0]->nodeValue;
+                $ad = $station->getElementsByTagName("address")[0]->nodeValue;
+                $pr = $station->getElementsByTagName("provider")[0]->nodeValue;
+                $pa = $station->getElementsByTagName("parkingNo")[0]->nodeValue;
+                $img = '';
+                if(!isNullOrEmptyString($station->getElementsByTagName("img")[0]->nodeValue)) {
+                    $img = self::$STATION_URL_PREFIX.$station->getElementsByTagName("img")[0]->nodeValue;
+                }
+                
+                
+                $sta = new Station();
+                $sta->__set('id', $no);
+                $sta->__set('location', $lo);
+                $sta->__set('lat', $la);
+                $sta->__set('lng', $ln);
+                $sta->__set('type', $ty);
+                $sta->__set('address', $ad);
+                $sta->__set('districtL', $dl);
+                $sta->__set('districtS', $ds);
+                $sta->__set('provider', $pr);
+                $sta->__set('parkingNo', $no);
+                $sta->__set('img', $img);
+
+                $sql = 'insert into station (id, location, lat, lng, type, address, district_id, provider, parkingNo, img) 
+                values (?, ?, ?, 
+                ?, ?, ?, 
+                (select id from district where area = ? and district = ? and lang = ?),
+                 ?, ?, ?)';
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bind_param("dsddssssssss", $no, $lo, $la, $ln, $ty, $ad, $dl, $ds, $lang, $pr, $no, $img);
+                $stmt->execute();
+                $stmt->close();
             }
         }
     }
@@ -62,19 +108,19 @@ class DBCreator
         // PREPARE THE QUERIES
         $var_l = count($sentences);
         $s_temp = '';
-        for ($var_k=0;$var_k<$var_l;$var_k++) {
-            $s = $s_temp.$sentences[$var_k];
-            if (!empty($s) && trim($s)!='') {
+        for ($var_k = 0; $var_k < $var_l; $var_k++) {
+            $s = $s_temp . $sentences[$var_k];
+            if (!empty($s) && trim($s) != '') {
                 $s .= $needle;
                 $simple_comma = substr_count($s, "'");
                 $scaped_simple_comma = substr_count($s, "\'");
-                if (($simple_comma-$scaped_simple_comma)%2==0) {
+                if (($simple_comma - $scaped_simple_comma) % 2 == 0) {
                     $sentences[$var_k] = $s;
                     $s_temp = '';
-                //echo "[OK] ".$s." <br />";
+                    //echo "[OK] ".$s." <br />";
                 } else {
                     unset($sentences[$var_k]);
-                    $s_temp = $s.";";
+                    $s_temp = $s . ";";
                     //echo "[FAIL] ".$s." <br />";
                 }
             } else {
@@ -85,7 +131,7 @@ class DBCreator
         foreach ($sentences as $s) {
             $s = trim($s);
             if (!empty($s)) {
-                $s = trim($s);// . $needle;
+                $s = trim($s); // . $needle;
                 $this->conn->query($s);
             }
         }

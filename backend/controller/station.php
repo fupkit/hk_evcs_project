@@ -1,5 +1,5 @@
 <?php
-require_once '../db/db_connector.php';
+require_once '../db/station_dao.php';
 $requires = glob('../class/*.php');
 foreach ($requires as $file) {
     require_once $file;
@@ -13,11 +13,12 @@ if (isset($PATH_INFO)) {
 }
 
 $res = new stdClass();
+$stationDAO = new StationDAO();
 if ($REQUEST_METHOD == 'GET') {
     if (sizeof($args) > 1) {
-        $res->message = 'get ' . implode(', ', $args);
+
     } else {
-        $res->message = 'get all';
+        $res->stations = $stationDAO->get_all();
     }
 
 } else if ($REQUEST_METHOD == 'DELETE') {

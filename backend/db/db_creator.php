@@ -13,7 +13,7 @@ class DBCreator
     public function create($conn)
     {
         $this->conn = $conn;
-        $create_sql = file_get_contents('evcs_create.sql');
+        $create_sql = file_get_contents("evcs_create.sql");
         if ($this->dbImportSQL($create_sql) === true) {
             if (mysqli_select_db($this->conn, 'evcs')) {
                 $this->get_en_data();
@@ -81,7 +81,7 @@ class DBCreator
                 (select id from district where area = ? and district = ? and lang = ?),
                  ?, ?, ?)';
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bind_param("dssddssssssss", $no, $lo, $lang, $la, $ln, $ty, $ad, $dl, $ds, $lang, $pr, $no, $img);
+                $stmt->bind_param("dssddssssssss", $no, $lang, $lo, $la, $ln, $ty, $ad, $dl, $ds, $lang, $pr, $no, $img);
                 $stmt->execute();
                 $stmt->close();
             }

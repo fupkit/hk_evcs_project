@@ -1,8 +1,5 @@
 <?php
-$requires = glob('../class/*.php');
-foreach ($requires as $file) {
-    require_once($file);   
-}
+
 require_once('../util/util.php');
 
 class DBCreator
@@ -76,18 +73,7 @@ class DBCreator
                 }
                 
                 
-                $sta = new Station();
-                $sta->__set('id', $no);
-                $sta->__set('location', $lo);
-                $sta->__set('lat', $la);
-                $sta->__set('lng', $ln);
-                $sta->__set('type', $ty);
-                $sta->__set('address', $ad);
-                $sta->__set('districtL', $dl);
-                $sta->__set('districtS', $ds);
-                $sta->__set('provider', $pr);
-                $sta->__set('parkingNo', $no);
-                $sta->__set('img', $img);
+
 
                 $sql = 'insert into station (id, lang,  location, lat, lng, type, address, district_id, provider, parkingNo, img) 
                 values (?, ?, ?, ?, 

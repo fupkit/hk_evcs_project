@@ -1,0 +1,16 @@
+station table cols:
+id (pk)
+lang (pk)
+
+distict_id =
+districtL
+districtS
+
+location
+lat
+lng
+type
+address
+provider
+parkingNo
+img

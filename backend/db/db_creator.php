@@ -13,12 +13,11 @@ class DBCreator
     public function create($conn)
     {
         $this->conn = $conn;
-        $create_sql = file_get_contents("evcs_create.sql");
+        $create_sql = file_get_contents("../db/evcs_create.sql");
         if ($this->dbImportSQL($create_sql) === true) {
             if (mysqli_select_db($this->conn, 'evcs')) {
                 $this->get_en_data();
                 $this->get_tc_data();
-                echo "Database created successfully";
             }
         } else {
             echo "Error creating database: " . $this->conn->error;
@@ -68,7 +67,7 @@ class DBCreator
                 $pr = $station->getElementsByTagName("provider")[0]->nodeValue;
                 $pa = $station->getElementsByTagName("parkingNo")[0]->nodeValue;
                 $img = '';
-                if(!isNullOrEmptyString($station->getElementsByTagName("img")[0]->nodeValue)) {
+                if (!isNullOrEmptyString($station->getElementsByTagName("img")[0]->nodeValue)) {
                     $img = self::$STATION_URL_PREFIX.$station->getElementsByTagName("img")[0]->nodeValue;
                 }
                 
@@ -103,7 +102,7 @@ class DBCreator
                 if (($simple_comma - $scaped_simple_comma) % 2 == 0) {
                     $sentences[$var_k] = $s;
                     $s_temp = '';
-                    //echo "[OK] ".$s." <br />";
+                //echo "[OK] ".$s." <br />";
                 } else {
                     unset($sentences[$var_k]);
                     $s_temp = $s . ";";

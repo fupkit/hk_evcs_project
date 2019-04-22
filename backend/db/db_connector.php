@@ -2,13 +2,14 @@
 // Connect to the db
 require_once('db_creator.php');
 class DBConnector
+
 {
     private static $instance = null;
     private $conn;
 
     private $host = 'localhost';
     private $user = 'root';
-    private $pass = 'root';
+    private $pass = '';
     private $db = 'evcs';
 
     private function __construct()

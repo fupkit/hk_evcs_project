@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "f2a4f225-d464-433e-94fd-9636abb1119a",
+		"name": "ATWD Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET station",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"station.php",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST station",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lang\": \"en\",\n    \"station\": {\n        \"en\": {\n            \"lang\": \"en\",\n            \"districtL\": \"dL\",\n            \"districtS\": \"dS\",\n            \"location\": \"location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"Full Auto\",\n            \"address\": \"address 1\",\n            \"provider\": \"provider 1\",\n            \"parkingNo\": \"parkingNo 1\",\n            \"img\": \"img 1\"\n        },\n        \"tc\": {\n            \"lang\": \"tc\",\n            \"districtL\": \"tc dL\",\n            \"districtS\": \"tc dS\",\n            \"location\": \"tc location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"tc Full Auto\",\n            \"address\": \"tc address 1\",\n            \"provider\": \"tc provider 1\",\n            \"parkingNo\": \"tc parkingNo 1\",\n            \"img\": \"tc img 1\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"station.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT station",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lang\": \"en\",\n    \"station\": {\n        \"en\": {\n            \"lang\": \"en\",\n            \"districtL\": \"dL\",\n            \"districtS\": \"dS\",\n            \"location\": \"location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"Full Auto\",\n            \"address\": \"address 1\",\n            \"provider\": \"provider 1\",\n            \"parkingNo\": \"parkingNo 1\",\n            \"img\": \"img 1\"\n        },\n        \"tc\": {\n            \"lang\": \"tc\",\n            \"districtL\": \"tc dL\",\n            \"districtS\": \"tc dS\",\n            \"location\": \"tc location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"tc Full Auto\",\n            \"address\": \"tc address 1\",\n            \"provider\": \"tc provider 1\",\n            \"parkingNo\": \"tc parkingNo 1\",\n            \"img\": \"tc img 1\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"station.php",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE station",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"station.php",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

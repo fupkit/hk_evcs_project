@@ -84,9 +84,9 @@ class StationDAO extends DBConnector
     public function get_by_loc($loc_name)
     {
         $res = array();
-        $sql = "SELECT S.*, D.* FROM ".self::TABLE_NAME." S"
-        ." LEFT JOIN district D ON S.district_id = D.id".
-        " WHERE D.area LIKE '%$loc_name%' OR D.district LIKE '%$loc_name%' OR S.address LIKE D.area LIKE '%$loc_name%'";
+        $sql = "SELECT S.*, D.area AS districtL, D.district AS districtS FROM ".self::TABLE_NAME." S"
+        ." LEFT JOIN district D ON S.district_id = D.id AND D.lang = S.lang".
+        " WHERE LOWER(D.area) LIKE '%$loc_name%' OR LOWER(D.district) LIKE '%$loc_name%' OR LOWER(S.address) LIKE '%$loc_name%'";
         if ($result = $this->mysqli->query($sql)) {
             while ($row = mysqli_fetch_object($result)) {
                 array_push($res, $row);
@@ -98,7 +98,7 @@ class StationDAO extends DBConnector
     public function get_all()
     {
         $res = array();
-        $sql = "SELECT S.*, D.area, D.district FROM ".self::TABLE_NAME." S"
+        $sql = "SELECT S.*, D.area AS districtL, D.district AS districtS  FROM ".self::TABLE_NAME." S"
         ." LEFT JOIN district D ON S.district_id = D.id AND D.lang = S.lang ORDER BY S.id ASC";
         if ($result = $this->mysqli->query($sql)) {
             while ($row = mysqli_fetch_object($result)) {
@@ -111,9 +111,9 @@ class StationDAO extends DBConnector
     public function get_by_id($id)
     {
         $res = array();
-        $sql = "SELECT S.*, D.* FROM ".self::TABLE_NAME." S"
-        ." LEFT JOIN district D ON S.district_id = D.id".
-        " WHERE D.id = $id";
+        $sql = "SELECT S.*, D.area AS districtL, D.district AS districtS  FROM ".self::TABLE_NAME." S"
+        ." LEFT JOIN district D ON S.district_id = D.id AND D.lang = S.lang".
+        " WHERE S.id = $id";
         if ($result = $this->mysqli->query($sql)) {
             while ($row = mysqli_fetch_object($result)) {
                 array_push($res, $row);

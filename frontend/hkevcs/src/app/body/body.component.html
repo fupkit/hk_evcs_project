@@ -1,0 +1,13 @@
+<div class="main">
+  <mat-form-field style="width:100%;">
+    <input class="search-bar" matInput type="search" (keyup.enter)="searchStation($event.target.value)"
+      placeholder="Search">
+    <mat-icon>search</mat-icon>
+  </mat-form-field>
+  <div *ngIf="language=='EN'">
+    <app-station *ngFor="let item of en_stations" [station]="item"></app-station>
+  </div>
+  <div *ngIf="language=='TC'">
+    <app-station *ngFor="let item of tc_stations" [station]="item"></app-station>
+  </div>
+</div>

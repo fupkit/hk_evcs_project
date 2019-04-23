@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 require_once '../db/station_dao.php';
 $requires = glob('../class/*.php');
 foreach ($requires as $file) {
@@ -44,7 +45,6 @@ if ($REQUEST_METHOD == 'GET') {
             $res->result = false;
             $res->message = $result;
         }
-        $res->message = 'DELETE  ' . implode(', ', $args);
     } else {
         $res->message = 'Please specify the station you want to delete!';
     }
@@ -84,8 +84,8 @@ if ($REQUEST_METHOD == 'GET') {
 }
 
 if($format === 'xml') {
-    echo XMLSerializer::generateValidXmlFromObj($res, '', 'station');
+    echo XMLSerializer::generateValidXmlFromObj($res, 'data', 'station');
 } else {
-    echo json_encode($res);
+    echo json_encode($res, JSON_NUMERIC_CHECK);
 }
 

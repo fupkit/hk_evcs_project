@@ -1,0 +1,21 @@
+<mat-card *ngIf="station" class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{station.location}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <div class="content-div">
+      <p>{{station.address}}</p>
+      <p>{{station.district}}</p>
+      <p>{{station.area}}</p>
+    </div>
+    <div class="content-div">
+      <!-- <img class="card-img" mat-card-image src="{{station.img}}" onError="this.src='assets/img_missing.png';"> -->
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="promptUpdate()" color="primary" mat-button>EDIT</button>
+    <button (click)="promptDelete()" color="primary" mat-button>DELETE</button>
+    <button (click)="promptMap()" color="primary" mat-button>MAP</button>
+  </mat-card-actions>
+</mat-card>

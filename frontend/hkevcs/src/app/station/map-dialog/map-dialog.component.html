@@ -1,3 +1,3 @@
-<agm-map *ngIf="station" [latitude]="station.lat" [longitude]="station.lng">
-  <agm-marker [latitude]="station.lat" [longitude]="station.lng"></agm-marker>
+<agm-map [zoom]="10" [latitude]="lats[0]" [longitude]="lngs[0]">
+  <agm-marker *ngFor="let lat of lats; let i = index" [latitude]="lats[i]" [longitude]="lngs[i]"></agm-marker>
 </agm-map>

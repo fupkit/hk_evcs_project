@@ -5,17 +5,20 @@
   <mat-card-content class="card-content">
     <div class="content-div">
       <p>{{station.address}}</p>
-      <p>{{station.district}}</p>
-      <p>{{station.area}}</p>
+      <hr>
+      <p>{{station.districtS}}</p>
+      <hr>
+      <p>{{station.districtL}}</p>
+      <hr>
     </div>
     <div class="content-div">
-      <!-- <img class="card-img" mat-card-image src="{{station.img}}" onError="this.src='assets/img_missing.png';"> -->
+      <img class="card-img" mat-card-image src="{{station.img}}" onError="this.src='assets/img_missing.png';">
     </div>
 
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="promptUpdate()" color="primary" mat-button>EDIT</button>
-    <button (click)="promptDelete()" color="primary" mat-button>DELETE</button>
-    <button (click)="promptMap()" color="primary" mat-button>MAP</button>
+    <button (click)="promptUpdate()" color="primary" mat-raised-button>EDIT</button>
+    <button (click)="promptDelete()" color="primary" mat-raised-button>DELETE</button>
+    <button (click)="promptMap()" color="primary" mat-raised-button>MAP</button>
   </mat-card-actions>
 </mat-card>

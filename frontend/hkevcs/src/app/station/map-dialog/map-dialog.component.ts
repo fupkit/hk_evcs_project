@@ -8,14 +8,18 @@ import { Station } from '../station';
   styleUrls: ['./map-dialog.component.scss']
 })
 export class MapDialogComponent implements OnInit {
-  station : Station;
+
+  lats:number[] = [];
+  lngs:number[]= [];
   constructor(@Inject(MAT_DIALOG_DATA) public data) { 
   }
 
   ngOnInit() {
-    this.station = this.data.station;
+    for(let st of this.data.stations) {
+      this.lats.push(st.lat);
+      this.lngs.push(st.lng);
+    }
     
-    console.log(this.station);
   }
 
 }

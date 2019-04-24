@@ -4,6 +4,10 @@
       placeholder="Search">
     <mat-icon>search</mat-icon>
   </mat-form-field>
+  <div class="second-div">
+      <span class="fill-space"></span>
+      <button mat-button (click)="promptMap()" color="accent" mat-raised-button cdkFocusInitial>SHOW ALL ON MAP</button>
+  </div>
   <div *ngIf="language=='EN'">
     <app-station *ngFor="let item of en_stations" [station]="item" (updateEvent) = "ngOnInit()"></app-station>
   </div>

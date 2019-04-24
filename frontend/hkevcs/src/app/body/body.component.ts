@@ -3,6 +3,8 @@ import { Station } from '../station/station';
 import { ApiService } from '../api-service.service';
 import { DataShareService } from '../data-share.service';
 import { District } from '../district';
+import { MapDialogComponent } from '../station/map-dialog/map-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-body',
@@ -21,7 +23,8 @@ export class BodyComponent implements OnInit {
   en_stations: Station[] = [];
   tc_stations: Station[] = [];
   constructor(private service: ApiService,
-    private share: DataShareService) { }
+    private share: DataShareService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.service.getArea('EN').subscribe(res => {
@@ -81,5 +84,19 @@ export class BodyComponent implements OnInit {
     this.en_stations = this.stations.filter(s => { return s.lang.toUpperCase() == "EN"; });
     this.tc_stations = this.stations.filter(s => { return s.lang.toUpperCase() == "TC"; });
   }
+
+  promptMap() {
+    const dialogRef = this.dialog.open(MapDialogComponent, {
+      width: '600px',
+      data: {
+        stations: this.stations
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Map dialog was closed');
+    });
+  }
+
 
 }

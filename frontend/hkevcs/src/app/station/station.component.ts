@@ -23,7 +23,7 @@ export class StationComponent implements OnInit {
     const dialogRef = this.dialog.open(MapDialogComponent, {
       width: '600px',
       data: {
-        station: this.station
+        stations: [this.station]
       }
     });
 

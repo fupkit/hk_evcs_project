@@ -3,6 +3,8 @@ import { Station } from './station';
 import { MatDialog } from '@angular/material';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { Output, EventEmitter } from '@angular/core'; 
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 @Component({
   selector: 'app-station',
   templateUrl: './station.component.html',
@@ -10,6 +12,7 @@ import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 })
 export class StationComponent implements OnInit {
   @Input() station: Station;
+  @Output() updateEvent = new EventEmitter<string>();
   constructor(public dialog: MatDialog) {
   }
 
@@ -39,11 +42,27 @@ export class StationComponent implements OnInit {
 
     updateDiRef.afterClosed().subscribe(result => {
       console.log('Update dialog was closed');
+      this.parentUpdate();
     });
   }
 
   promptDelete() {
+    const deleteDiRef = this.dialog.open(DeleteDialogComponent, {
+      width: '600px',
+      data: {
+        station: this.station
+      }
+    });
+    deleteDiRef.afterClosed().subscribe(result => {
+      console.log('Delete dialog was closed');
+      if(result === true) {
+        this.parentUpdate();
+      }
+    });
+  }
 
+  parentUpdate() {
+    this.updateEvent.next();
   }
 
 }

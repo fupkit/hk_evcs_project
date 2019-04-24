@@ -32,7 +32,8 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from "../environments/environment";
 import { MapDialogComponent } from './station/map-dialog/map-dialog.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
-import { UpdateDialogComponent } from './station/update-dialog/update-dialog.component'
+import { UpdateDialogComponent } from './station/update-dialog/update-dialog.component';
+import { DeleteDialogComponent } from './station/delete-dialog/delete-dialog.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UpdateDialogComponent } from './station/update-dialog/update-dialog.com
     StationComponent,
     MapDialogComponent,
     TopNavComponent,
-    UpdateDialogComponent
+    UpdateDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,6 @@ import { UpdateDialogComponent } from './station/update-dialog/update-dialog.com
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
-  entryComponents: [MapDialogComponent, UpdateDialogComponent]
+  entryComponents: [MapDialogComponent, UpdateDialogComponent, DeleteDialogComponent]
 })
 export class AppModule { }

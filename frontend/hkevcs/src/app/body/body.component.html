@@ -5,9 +5,9 @@
     <mat-icon>search</mat-icon>
   </mat-form-field>
   <div *ngIf="language=='EN'">
-    <app-station *ngFor="let item of en_stations" [station]="item"></app-station>
+    <app-station *ngFor="let item of en_stations" [station]="item" (updateEvent) = "ngOnInit()"></app-station>
   </div>
   <div *ngIf="language=='TC'">
-    <app-station *ngFor="let item of tc_stations" [station]="item"></app-station>
+    <app-station *ngFor="let item of tc_stations" [station]="item" (updateEvent) = "ngOnInit()"></app-station>
   </div>
 </div>

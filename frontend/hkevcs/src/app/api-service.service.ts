@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../environments/environment"
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Station } from './station/station';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,10 +34,14 @@ export class ApiService {
     return this.http.post(this.basePath + 'station.php', params);
   }
 
-  update(id: number, station: any) {
-    let params = new HttpParams()
-      .set('station', JSON.stringify(station));
-    return this.http.put(this.basePath + 'station.php' + '/' + id, params);
+  update(id: number, station: Station) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    let data = {
+      station : station
+    };
+    return this.http.put(this.basePath + 'station.php' + '/' + id, data, httpOptions);
   }
 
   delete(id: number) {
@@ -45,13 +50,13 @@ export class ApiService {
 
   getDistrict(lang) {
     let params = new HttpParams()
-      .set('lang', JSON.stringify(lang));
+      .set('lang', lang);
     return this.http.get(this.basePath + 'district.php', { params: params });
   }
 
   getArea(lang) {
     let params = new HttpParams()
-    .set('lang', JSON.stringify(lang));
+    .set('lang', lang);
   return this.http.get(this.basePath + 'district.php/area', { params: params });
   }
 

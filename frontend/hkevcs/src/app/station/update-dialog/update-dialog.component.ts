@@ -2,9 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'src/app/api-service.service';
 import { DataShareService } from 'src/app/data-share.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
 import { Station } from '../station';
 import { BodyComponent } from 'src/app/body/body.component';
+import { District } from 'src/app/district';
 
 @Component({
   selector: 'app-update-dialog',
@@ -19,7 +20,8 @@ export class UpdateDialogComponent implements OnInit {
     private share: DataShareService,
     @Inject(MAT_DIALOG_DATA) public data,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<UpdateDialogComponent>) { }
 
   ngOnInit() {
     this.station = this.data.station;
@@ -43,12 +45,14 @@ export class UpdateDialogComponent implements OnInit {
   }
 
   updateStation() {
-    console.log(this.updateForm.value);
     let sta: Station = this.updateForm.value;
     this.service.update(this.station.id, sta).subscribe(res=>{
       console.log(res);
       let a = JSON.stringify(res);
       let r = JSON.parse(a);
+      if(r.result) {
+        this.dialogRef.close();
+      }
       this.snackBar.open(r.message);
     });
   }
@@ -62,11 +66,13 @@ export class UpdateDialogComponent implements OnInit {
   }
 
   getDistricts() {
+    let res: District[];
     if(this.language === 'EN') {
-      return BodyComponent.en_districts;
+      res= BodyComponent.en_districts;
     } else {
-      return BodyComponent.tc_districts;
+      res= BodyComponent.tc_districts;
     }
+    return res;
   }
 
 }

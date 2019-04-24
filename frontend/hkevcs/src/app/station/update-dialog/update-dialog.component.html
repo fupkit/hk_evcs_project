@@ -14,6 +14,7 @@
   <mat-form-field>
     <input matInput placeholder="Type" formControlName="type">
   </mat-form-field>
+  <p>Area</p>
   <mat-form-field>
     <mat-select matNativeControl required formControlName="districtL">
       <mat-option *ngFor="let a of getAreas(); let i=index" value="{{a}}">
@@ -21,10 +22,11 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <p>District</p>
   <mat-form-field>
     <mat-select matNativeControl required formControlName="districtS">
-      <mat-option *ngFor="let d of getDistricts(); let i=index" value="{{d.districtS}}">
-        {{d.districtS}}
+      <mat-option *ngFor="let d of getDistricts(); let i=index" value="{{d.district}}">
+        {{d.district}}
       </mat-option>
     </mat-select>
   </mat-form-field>

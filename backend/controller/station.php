@@ -49,6 +49,7 @@ if ($REQUEST_METHOD == 'GET') {
             $res->message = $result;
         }
     } else {
+        $res->result = false;
         $res->message = 'Please specify the station you want to delete!';
     }
 } elseif ($REQUEST_METHOD == 'PUT') {
@@ -69,6 +70,7 @@ if ($REQUEST_METHOD == 'GET') {
             $res->message = 'Please specify the station data language!';
         }
     } else {
+        $res->result = false;
         $res->message = 'Please specify the station you want to update!';
     }
 } elseif ($REQUEST_METHOD == 'POST') {

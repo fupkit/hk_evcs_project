@@ -25,7 +25,9 @@ export class DeleteDialogComponent implements OnInit {
       let a = JSON.stringify(res);
       let r = JSON.parse(a);
       console.log(r);
-      this.snackBar.open(r.message);
+      this.snackBar.open(r.message, null, {
+        duration: 2000
+      });
       this.dialogRef.close(r.result);
     })
   }

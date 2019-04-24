@@ -53,7 +53,9 @@ export class UpdateDialogComponent implements OnInit {
       if(r.result) {
         this.dialogRef.close();
       }
-      this.snackBar.open(r.message);
+      this.snackBar.open(r.message, null, {
+        duration: 2000
+      });
     });
   }
 

@@ -9,17 +9,24 @@ import { Station } from '../station';
 })
 export class MapDialogComponent implements OnInit {
 
-  lats:number[] = [];
-  lngs:number[]= [];
-  constructor(@Inject(MAT_DIALOG_DATA) public data) { 
+  markerImg = {
+    url: '../../assets/EV-Charging.png',
+    scaledSize: {
+      width: 30,
+      height: 45
+    }
+  }
+  lats: number[] = [];
+  lngs: number[] = [];
+  constructor(@Inject(MAT_DIALOG_DATA) public data) {
   }
 
   ngOnInit() {
-    for(let st of this.data.stations) {
+    for (let st of this.data.stations) {
       this.lats.push(st.lat);
       this.lngs.push(st.lng);
     }
-    
+
   }
 
 }

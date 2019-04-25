@@ -5,13 +5,16 @@
     <mat-icon>search</mat-icon>
   </mat-form-field>
   <div class="second-div">
-      <span class="fill-space"></span>
-      <button mat-button (click)="promptMap()" color="accent" mat-raised-button cdkFocusInitial>SHOW ALL ON MAP</button>
+    <span class="fill-space"></span>
+    <button class="btn-main" mat-button (click)="promptAddStation()" color="accent" mat-raised-button cdkFocusInitial>Add
+      Station</button>
+    <button class="btn-main" mat-button (click)="promptMap()" color="accent" mat-raised-button cdkFocusInitial>SHOW ALL
+      ON MAP</button>
   </div>
   <div *ngIf="language=='EN'">
-    <app-station *ngFor="let item of en_stations" [station]="item" (updateEvent) = "ngOnInit()"></app-station>
+    <app-station *ngFor="let item of en_stations" [station]="item" (updateEvent)="ngOnInit()"></app-station>
   </div>
   <div *ngIf="language=='TC'">
-    <app-station *ngFor="let item of tc_stations" [station]="item" (updateEvent) = "ngOnInit()"></app-station>
+    <app-station *ngFor="let item of tc_stations" [station]="item" (updateEvent)="ngOnInit()"></app-station>
   </div>
 </div>

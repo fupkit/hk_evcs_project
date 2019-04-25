@@ -28,10 +28,8 @@ export class ApiService {
     });
   }
 
-  insert(station: any) {
-    let params = new HttpParams()
-      .set('station', JSON.stringify(station));
-    return this.http.post(this.basePath + 'station.php', params);
+  insert(data: any) {
+    return this.http.post(this.basePath + 'station.php', data);
   }
 
   update(id: number, station: Station) {

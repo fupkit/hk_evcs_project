@@ -33,7 +33,8 @@ import { environment } from "../environments/environment";
 import { MapDialogComponent } from './station/map-dialog/map-dialog.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { UpdateDialogComponent } from './station/update-dialog/update-dialog.component';
-import { DeleteDialogComponent } from './station/delete-dialog/delete-dialog.component'
+import { DeleteDialogComponent } from './station/delete-dialog/delete-dialog.component';
+import { AddDialogComponent } from './body/add-dialog/add-dialog.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DeleteDialogComponent } from './station/delete-dialog/delete-dialog.com
     MapDialogComponent,
     TopNavComponent,
     UpdateDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,6 @@ import { DeleteDialogComponent } from './station/delete-dialog/delete-dialog.com
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
-  entryComponents: [MapDialogComponent, UpdateDialogComponent, DeleteDialogComponent]
+  entryComponents: [MapDialogComponent, UpdateDialogComponent, DeleteDialogComponent, AddDialogComponent]
 })
 export class AppModule { }

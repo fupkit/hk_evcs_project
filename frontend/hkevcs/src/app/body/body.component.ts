@@ -5,6 +5,7 @@ import { DataShareService } from '../data-share.service';
 import { District } from '../district';
 import { MapDialogComponent } from '../station/map-dialog/map-dialog.component';
 import { MatDialog } from '@angular/material';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-body',
@@ -95,6 +96,19 @@ export class BodyComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Map dialog was closed');
+    });
+  }
+
+  promptAddStation() {
+    const addDigRef = this.dialog.open(AddDialogComponent, {
+      width: '600px'
+    });
+
+    addDigRef.afterClosed().subscribe(result => {
+      console.log('Add dialog was closed');
+      if(result) {
+        this.ngOnInit();
+      }
     });
   }
 

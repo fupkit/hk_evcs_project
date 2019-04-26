@@ -42,7 +42,9 @@ export class StationComponent implements OnInit {
 
     updateDiRef.afterClosed().subscribe(result => {
       console.log('Update dialog was closed');
-      this.parentUpdate();
+      if(result) {
+        this.parentUpdate();
+      }
     });
   }
 

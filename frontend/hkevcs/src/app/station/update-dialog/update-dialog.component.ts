@@ -51,7 +51,7 @@ export class UpdateDialogComponent implements OnInit {
       let a = JSON.stringify(res);
       let r = JSON.parse(a);
       if(r.result) {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       }
       this.snackBar.open(r.message, null, {
         duration: 2000

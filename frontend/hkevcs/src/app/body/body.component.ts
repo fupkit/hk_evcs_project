@@ -34,9 +34,13 @@ export class BodyComponent implements OnInit {
       if (r.result) {
         r.areas.forEach(a => {
           BodyComponent.en_areas.push(a.area);
+          this.initPage();
         });
       }
     });
+    
+  }
+  initPage() {
     this.service.getArea('TC').subscribe(res => {
       let a = JSON.stringify(res);
       let r = JSON.parse(a);
@@ -71,7 +75,6 @@ export class BodyComponent implements OnInit {
       this.language = lang.toUpperCase();
     });
   }
-
   searchStation(key: string) {
     this.service.search(key).subscribe(res => {
       this.parseStation(res);

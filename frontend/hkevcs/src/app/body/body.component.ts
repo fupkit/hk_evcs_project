@@ -27,8 +27,8 @@ export class BodyComponent implements OnInit {
     private share: DataShareService,
     public dialog: MatDialog) { }
 
-  ngOnInit() {
-    this.service.getArea('EN').subscribe(res => {
+  async ngOnInit() {
+    await this.service.getArea('EN').subscribe(res => {
       let a = JSON.stringify(res);
       let r = JSON.parse(a);
       if (r.result) {

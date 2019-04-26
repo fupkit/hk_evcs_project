@@ -1,51 +1,51 @@
-<form [formGroup]="updateForm">
-  <mat-form-field>
-    <input placeholder="Language" matInput formControlName="lang" readonly>
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Location" matInput formControlName="location">
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Latitude" matInput type="number" formControlName="lat">
-  </mat-form-field>
-  <mat-form-field>
-    <input placeholder="Longitude" matInput type="number" formControlName="lng">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Type" formControlName="type">
-  </mat-form-field>
-  <p>Area</p>
-  <mat-form-field>
-    <mat-select matNativeControl required formControlName="districtL">
-      <mat-option *ngFor="let a of getAreas(); let i=index" value="{{a}}">
-        {{a}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <p>District</p>
-  <mat-form-field>
-    <mat-select matNativeControl required formControlName="districtS">
-      <mat-option *ngFor="let d of getDistricts(); let i=index" value="{{d.district}}">
-        {{d.district}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Address" formControlName="address">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Service Provider" formControlName="provider">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Parking No." formControlName="parkingNo">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Picture URL" type="url" formControlName="img">
-  </mat-form-field>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+      <input placeholder="Language" matInput formControlName="lang" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Location" matInput formControlName="location">
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Latitude" matInput type="number" formControlName="lat">
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Longitude" matInput type="number" formControlName="lng">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Type" formControlName="type">
+    </mat-form-field>
+    <p>Area</p>
+    <mat-form-field>
+      <mat-select matNativeControl required formControlName="districtL">
+        <mat-option *ngFor="let a of getAreas(); let i=index" value="{{a}}">
+          {{a}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>District</p>
+    <mat-form-field>
+      <mat-select matNativeControl required formControlName="districtS">
+        <mat-option *ngFor="let d of getDistricts(); let i=index" value="{{d.district}}">
+          {{d.district}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Service Provider" formControlName="provider">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Parking No." formControlName="parkingNo">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Picture URL" type="url" formControlName="img">
+    </mat-form-field>
 
-
-
-  <div mat-dialog-actions>
-    <button mat-stroked-button (click)="updateStation()" mat-raised-button color="primary">Update</button>
-  </div>
-</form>
+  </form>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="updateStation()" mat-raised-button color="primary">Update</button>
+</div>

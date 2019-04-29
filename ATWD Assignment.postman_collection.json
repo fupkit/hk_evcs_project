@@ -34,6 +34,62 @@
 			"response": []
 		},
 		{
+			"name": "GET district",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/district.php/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"district.php",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET area",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/district.php/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"apps",
+						"ATWD",
+						"hk_evcs_project",
+						"backend",
+						"controller",
+						"district.php",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "POST station",
 			"request": {
 				"method": "POST",
@@ -47,7 +103,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"lang\": \"en\",\n    \"station\": {\n        \"en\": {\n            \"lang\": \"en\",\n            \"districtL\": \"dL\",\n            \"districtS\": \"dS\",\n            \"location\": \"location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"Full Auto\",\n            \"address\": \"address 1\",\n            \"provider\": \"provider 1\",\n            \"parkingNo\": \"parkingNo 1\",\n            \"img\": \"img 1\"\n        },\n        \"tc\": {\n            \"lang\": \"tc\",\n            \"districtL\": \"tc dL\",\n            \"districtS\": \"tc dS\",\n            \"location\": \"tc location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"tc Full Auto\",\n            \"address\": \"tc address 1\",\n            \"provider\": \"tc provider 1\",\n            \"parkingNo\": \"tc parkingNo 1\",\n            \"img\": \"tc img 1\"\n        }\n    }\n}"
+					"raw": "{\n    \"station\": {\n        \"en\": {\n            \"lang\": \"en\",\n            \"districtL\": \"Hong Kong Island\",\n            \"districtS\": \"Central and Western\",\n            \"location\": \"location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"Full Auto\",\n            \"address\": \"address 1\",\n            \"provider\": \"provider 1\",\n            \"parkingNo\": \"parkingNo 1\",\n            \"img\": \"img 1\"\n        },\n        \"tc\": {\n            \"lang\": \"tc\",\n            \"districtL\": \"香港島\",\n            \"districtS\": \"中西區\",\n            \"location\": \"tc location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"tc Full Auto\",\n            \"address\": \"tc address 1\",\n            \"provider\": \"tc provider 1\",\n            \"parkingNo\": \"tc parkingNo 1\",\n            \"img\": \"tc img 1\"\n        }\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php",
@@ -81,7 +137,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"lang\": \"en\",\n    \"station\": {\n        \"en\": {\n            \"lang\": \"en\",\n            \"districtL\": \"dL\",\n            \"districtS\": \"dS\",\n            \"location\": \"location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"Full Auto\",\n            \"address\": \"address 1\",\n            \"provider\": \"provider 1\",\n            \"parkingNo\": \"parkingNo 1\",\n            \"img\": \"img 1\"\n        },\n        \"tc\": {\n            \"lang\": \"tc\",\n            \"districtL\": \"tc dL\",\n            \"districtS\": \"tc dS\",\n            \"location\": \"tc location1\",\n            \"lat\": 123.45,\n            \"lng\": 678.9,\n            \"type\": \"tc Full Auto\",\n            \"address\": \"tc address 1\",\n            \"provider\": \"tc provider 1\",\n            \"parkingNo\": \"tc parkingNo 1\",\n            \"img\": \"tc img 1\"\n        }\n    }\n}"
+					"raw": "{\n    \"station\": {\n        \"lang\": \"en\",\n        \"districtL\": \"Hong Kong Island\",\n        \"districtS\": \"Central and Western\",\n        \"location\": \"location1\",\n        \"lat\": 123.45,\n        \"lng\": 678.9,\n        \"type\": \"Full Auto\",\n        \"address\": \"address 1\",\n        \"provider\": \"provider 1\",\n        \"parkingNo\": \"parkingNo 1\",\n        \"img\": \"img 1\"\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost/apps/ATWD/hk_evcs_project/backend/controller/station.php/1",
